@@ -1,94 +1,46 @@
-# PayEz .NET SDK and Demo Application
+# PayEzMauiDemo Installation Guide
 
-This repository contains the PayEz .NET SDK and a comprehensive MAUI demo application showcasing integration with the PayEz payment processing API.
+## Prerequisites
+- Windows 10 or later
+- Administrator privileges for certificate installation
 
-## MVVM Architecture in the Demo Application
+## Installation Steps
 
-The demo application implements the Model-View-ViewModel (MVVM) pattern using the .NET MAUI framework and CommunityToolkit.Mvvm. This modern approach offers several benefits:
-
-### Key MVVM Features
-
-- **Clean Separation of Concerns**
-  - Models: Define the data structure (e.g., `VaultedCard`, `VaultedACH`)
-  - ViewModels: Handle business logic and state management (e.g., `VaultViewModel`, `CreditCardViewModel`)
-  - Views: Present the UI and handle user interaction (XAML-based pages)
-
-- **Observable Properties**
-  - Uses `[ObservableProperty]` attribute for automatic property change notifications
-  - Eliminates boilerplate PropertyChanged implementation
-  - Example: `[ObservableProperty] private string statusMessage;`
-
-- **Command Pattern**
-  - Implements commands using `[RelayCommand]` attribute
-  - Automatically handles async operations and command enabling/disabling
-  - Example: `[RelayCommand] private async Task LoadVaults()`
-
-### Service Layer
-
-- **Dependency Injection**
-  - Services are injected into ViewModels
-  - Promotes testability and modularity
-  - Example: `PaymentService`, `TestReportService`
-
-- **API Communication**
-  - Centralized HTTP client management
-  - Consistent error handling and response parsing
-  - Typed models for request/response data
-
-### Benefits for Commercial Use
-
-1. **Maintainability**
-   - Clear separation of UI, business logic, and data
-   - Easy to modify or replace individual components
-   - Consistent patterns across the application
-
-2. **Scalability**
-   - New features can be added without modifying existing code
-   - ViewModels can be reused across different views
-   - Services can be extended or modified independently
-
-3. **Testability**
-   - ViewModels can be tested without UI dependencies
-   - Services can be mocked for isolated testing
-   - Commands provide clear entry points for testing
-
-4. **Modern Development**
-   - Uses latest .NET features and best practices
-   - Leverages source generators for better performance
-   - Minimal boilerplate code
-
-### Example Usage
-
-```csharp
-// ViewModel with automatic property and command generation
-public partial class VaultViewModel : BaseViewModel
-{
-    [ObservableProperty]
-    private ObservableCollection<VaultedCard> cardVaults = new();
-
-    [RelayCommand]
-    private async Task LoadVaults()
-    {
-        var (cards, checks) = await _paymentService.GetPaymentMethodsAsync();
-        CardVaults.Clear();
-        foreach (var card in cards)
-        {
-            CardVaults.Add(card);
-        }
-    }
-}
-
-// XAML binding with commands and properties
-<Button Text="Load Vaults" 
-        Command="{Binding LoadVaultsCommand}"
-        IsEnabled="{Binding IsNotBusy}"/>
-<CollectionView ItemsSource="{Binding CardVaults}">
-    <!-- Item template -->
-</CollectionView>
+### 1. Install the Certificate
+1. Download the certificate:
+```
+https://github.com/PayEz-Net/maui-api-test-app/releases/download/untagged-07c2222454e65859dcce/PayEzMauiDemo_1.0.0.0_x64.cer
 ```
 
-Feel free to use this code as a reference for your own commercial applications. The MVVM pattern demonstrated here provides a solid foundation for building maintainable and scalable payment processing solutions.
+2. Install the certificate:
+- Right-click `PayEzMauiDemo_1.0.0.0_x64.cer`
+- Select "Install Certificate"
+- Choose "Local Machine"
+- Select "Place all certificates in the following store"
+- Click "Browse"
+- Select "Trusted Root Certification Authorities"
+- Click "OK" to complete the wizard
 
-## License
+### 2. Install the Application
+1. Download and run the MSIX:
+```
+https://github.com/PayEz-Net/maui-api-test-app/releases/download/untagged-07c2222454e65859dcce/PayEzMauiDemo_1.0.0.0_x64.msix
+```
+2. If Windows Defender SmartScreen shows a warning:
+- Click "More info"
+- Click "Run anyway"
+3. Click "Install" in the App Installer window
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Uninstallation
+To remove the application:
+1. Open Windows Settings
+2. Navigate to Apps → Apps & Features
+3. Search for "PayEzMauiDemo"
+4. Click the three dots (⋮)
+5. Select "Uninstall"
+
+## Troubleshooting
+If you encounter installation issues:
+- Ensure you've installed the certificate first
+- Run the installer with administrator privileges
+- Check Windows Event Viewer for detailed error messages
