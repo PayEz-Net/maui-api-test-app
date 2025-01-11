@@ -31,6 +31,10 @@ https://github.com/PayEz-Net/maui-api-test-app/releases/download/untagged-07c222
 - Click "Run anyway"
 3. Click "Install" in the App Installer window
 
+## Video Walkthrough
+Watch our detailed usage walkthrough:
+[PayEz API Test App Walkthrough](https://www.upsilonpayments.com/API-Test-Walkthrough.mp4)
+
 ## Uninstallation
 To remove the application:
 1. Open Windows Settings
